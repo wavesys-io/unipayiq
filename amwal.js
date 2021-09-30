@@ -18,7 +18,7 @@ router.post("/pay", (req, res) => {
     };
 
     const requestOptions = {
-        uri: process.env.AMWAL_URL,
+        uri: `${process.env.AMWAL_URL}/payment/request`,
         body: JSON.stringify(data),
         method: 'POST',
         headers: {

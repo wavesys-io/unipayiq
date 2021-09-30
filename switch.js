@@ -15,7 +15,7 @@ router.post("/pay", (req, res) => {
     };
 
     const requestOptions = {
-        uri: process.env.AMWAL_URL,
+        uri: `${process.env.SWITCH_URL}/api/nvp/version/61`,
         form: data,
         method: 'POST',
     };

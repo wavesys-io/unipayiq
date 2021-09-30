@@ -31,7 +31,7 @@ router.post('/pay', (req, res) => {
     };
 
     const requestOptions = {
-        uri: process.env.ZAINCASH_INIT_URL,
+        uri: `${process.env.ZAINCASH_URL}/transaction/init`,
         body: JSON.stringify(data),
         method: 'POST',
         headers: {
@@ -43,7 +43,7 @@ router.post('/pay', (req, res) => {
         try {
             const jsonRes = JSON.parse(response.body)
             if (!jsonRes.id) return res.json({ success: false, data: jsonRes })
-            res.redirect(process.env.ZAINCASH_REQUEST_URL + jsonRes.id)
+            res.redirect(`${process.env.ZAINCASH_URL}/transaction/pay?id=${jsonRes.id}`)
         } catch (err) {
             res.json({ success: false, err })
         }
@@ -72,7 +72,7 @@ router.get("/check", (req, res) => {
     const token = jwt.sign({ id, msisdn }, process.env.ZAINCASH_SECRET, { expiresIn: '4h' });
 
     const requestOptions = {
-        uri: process.env.ZAINCASH_GET_TRNAS_URL,
+        uri: `${process.env.ZAINCASH_URL}/transaction/get`,
         body: JSON.stringify({
             token,
             merchantId: process.env.ZAINCASH_MERCHANTID

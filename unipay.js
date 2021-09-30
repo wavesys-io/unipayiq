@@ -1,4 +1,5 @@
 const router = require("express").Router()
+require('dotenv').config();
 const zainCash = require("./zainCash")
 const switchMasterCard = require("./switch")
 const amwal = require("./amwal")

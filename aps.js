@@ -18,7 +18,7 @@ router.post("/pay", (req, res) => {
     };
 
     const requestOptions = {
-        uri: process.env.APS_URL,
+        uri: `${process.env.APS_URL}/rest/register.do`,
         form: data,
         method: 'POST',
     };
@@ -41,6 +41,12 @@ router.get("/redirect", (req, res) => {
     res.status(200).json({ success: true, data: req.query })
 })
 
+router.get("/fail", (req, res) => {
+    // verify request
+    if (req.callback && typeof req.callback === "function") req.callback({ orderID: req.query.orderNumber, transID: req.query.tranRef, status: req.query.status, verified: true, provider: 'APS', providerData: req.query })
+    res.status(200).json({ success: true, data: req.query })
+})
+
 
 router.post("/check", (req, res) => {
     const { orderID } = req.body
@@ -50,7 +56,7 @@ router.post("/check", (req, res) => {
         orderId: orderID,
     };
     const requestOptions = {
-        uri: process.env.APS_STATUS_URL,
+        uri: `${process.env.APS_URL}/payment/rest/getOrderStatus.do`,
         form: data,
         method: 'POST',
     };

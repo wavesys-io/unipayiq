@@ -10,7 +10,7 @@ const getTasdidToken = async (userName, password) => {
         };
 
         const requestOptions = {
-            uri: process.env.TASDID_AUTH_URL,
+            uri: `${process.env.TASDID_URL}/v1/api/Auth/Token`,
             body: JSON.stringify(postData),
             method: 'POST',
             headers: {
@@ -47,7 +47,7 @@ router.post("/pay", async (req, res) => {
         };
 
         const requestOptions = {
-            uri: process.env.TASDID_URL,
+            uri: `${process.env.TASDID_URL}/v1/api/Provider/AddBill`,
             body: JSON.stringify(postData),
             method: 'POST',
             headers: {
