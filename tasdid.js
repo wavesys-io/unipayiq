@@ -72,4 +72,9 @@ router.post("/redirect", (req, res) => {
 })
 
 
+router.get("/chech", (req, res) => {
+    res.json({ success: false, err: 'not supported' })
+})
+
+
 module.exports = router

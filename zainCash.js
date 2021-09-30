@@ -8,13 +8,13 @@ require('dotenv').config();
 router.post('/pay', (req, res) => {
 
 
-    const { amount, serviceType, orderID } = req.body;
+    const { amount, orderDesc, orderID } = req.body;
 
     const time = Date.now();
 
     const tokenData = {
         'amount': amount,
-        'serviceType': serviceType,
+        'serviceType': orderDesc,
         'msisdn': process.env.ZAINCASH_MSISDN,
         'orderId': orderID,
         'redirectUrl': `${process.env.API_URL}${req.baseUrl}/redirect`,
@@ -67,9 +67,9 @@ router.get('/redirect', (req, res) => {
 
 
 router.get("/check", (req, res) => {
-    const id = req.query.transID
+    const { transID } = req.query
     const msisdn = process.env.ZAINCASH_MSISDN
-    const token = jwt.sign({ id, msisdn }, process.env.ZAINCASH_SECRET, { expiresIn: '4h' });
+    const token = jwt.sign({ id: transID, msisdn }, process.env.ZAINCASH_SECRET, { expiresIn: '4h' });
 
     const requestOptions = {
         uri: `${process.env.ZAINCASH_URL}/transaction/get`,

@@ -48,12 +48,12 @@ router.get("/fail", (req, res) => {
 })
 
 
-router.post("/check", (req, res) => {
-    const { orderID } = req.body
+router.get("/check", (req, res) => {
+    const { transID } = req.query
     const data = {
         userName: process.env.APS_USERNAME,
         password: process.env.APS_PASSWORD,
-        orderId: orderID,
+        orderId: transID,
     };
     const requestOptions = {
         uri: `${process.env.APS_URL}/payment/rest/getOrderStatus.do`,
