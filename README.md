@@ -72,14 +72,17 @@ curl --request POST \
 }'
 ```
 
-## Payments gateway supported for now
+### providers
 
-- ZainCash
-- Amwal
-- APS
-- Tasdid
-- Switch
+- zain
+- switch
+- amwal
+- tasdid
+- aps
 
+### Use the name of providers in the request url, see the example below
+
+https://YOUR_DOMAIN/unipay/zain/check
 ## Contribution
 
 pull requests are welcome to integrate more providers bug fixes or to improve documentation

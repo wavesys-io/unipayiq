@@ -1,6 +1,6 @@
 {
   "name": "unipayiq",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Unified payment library",
   "main": "unipayiq.js",
   "repository": "https://github.com/wavesys-io/unipay.git",
