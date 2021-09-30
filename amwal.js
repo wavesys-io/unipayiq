@@ -3,7 +3,7 @@ const request = require('request');
 
 
 router.post("/pay", (req, res) => {
-    const { orderID, orderDesc, currency, amount } = req.body
+    const { orderID, orderDesc, currency = "IQD", amount } = req.body
 
     const data = {
         profile_id: process.env.AMWAL_MERCHANTID,
@@ -14,7 +14,7 @@ router.post("/pay", (req, res) => {
         cart_currency: currency,
         cart_amount: amount,
         callback: `${process.env.API_URL}${req.baseUrl}/redirect`,
-        return: `${process.env.HOME_URL}`,
+        return: `${process.env.AMWAL_RETURN_URL}`,
     };
 
     const requestOptions = {
@@ -39,8 +39,8 @@ router.post("/pay", (req, res) => {
 
 router.post("/redirect", (req, res) => {
     // verify request
-    if (req.callback && typeof req.callback === "function") req.callback({ orderID: req.query.cartId, transID: req.query.tranRef, status: req.query.respStatus, verified: true, provider: 'AMWAL', providerData: req.query })
-    res.status(201).send()
+    if (req.callback && typeof req.callback === "function") req.callback({ orderID: req.body.cartId, transID: req.body.tranRef, status: req.query.respStatus, verified: true, provider: 'AMWAL', providerData: req.body })
+    res.status(200).send()
 })
 
 

@@ -1,5 +1,5 @@
-module.exports = ({ orderID, transID, status, verified }) => {
+module.exports = (data) => {
 
     // do your logic
-    console.log(orderID, transID, status, verified)
+    console.log(data)
 }
