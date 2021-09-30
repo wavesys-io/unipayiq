@@ -8,13 +8,13 @@ require('dotenv').config();
 router.post('/pay', (req, res) => {
 
 
-    const { amount, orderDesc, orderID } = req.body;
+    const { amount, serviceType, orderID } = req.body;
 
     const time = Date.now();
 
     const tokenData = {
         'amount': amount,
-        'serviceType': orderDesc,
+        'serviceType': serviceType,
         'msisdn': process.env.ZAINCASH_MSISDN,
         'orderId': orderID,
         'redirectUrl': `${process.env.API_URL}${req.baseUrl}/redirect`,
