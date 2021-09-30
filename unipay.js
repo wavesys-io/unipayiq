@@ -6,7 +6,6 @@ const switchMasterCard = require("./switch")
 const amwal = require("./amwal")
 const aps = require("./aps")
 const tasdid = require("./tasdid");
-const { route } = require("./amwal");
 
 
 
@@ -16,8 +15,6 @@ module.exports = (callback = ({ orderID, transID, status = String, verified = Bo
         req.callback = callback
         next()
     })
-
-    router.use(express.urlencoded({ extended: false }))
 
     router.use("/zain", zainCash)
     router.use("/switch", switchMasterCard)

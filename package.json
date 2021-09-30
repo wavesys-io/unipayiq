@@ -1,9 +1,8 @@
 {
-  "name": "m1",
-  "version": "1.0.0",
-  "description": "Fintech hackathon M1",
-  "main": "app.js",
-  "repository": "https://github.com/wavesys-io/unipay.git",
+  "name": "unipayiq",
+  "version": "0.0.1",
+  "description": "Unified payment library",
+  "repository": "https://github.com/wavesys-io/unipayiq.git",
   "author": "wavesys",
   "license": "MIT",
   "private": false,

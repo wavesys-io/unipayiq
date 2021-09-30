@@ -1,15 +1,22 @@
 const express = require('express');
+
+
+
 const app = express();
-require('dotenv').config();
 const unipay = require("./unipay")
-const callback = require('./callback')
+
+require('dotenv').config();
 
 const PORT = process.env.PORT || 3000;
 
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }))
 
-app.use("/unipay", unipay(callback))
+const myCallback = data => console.log(data)
+
+
+app.use("/unipay", unipay(myCallback))
 
 
 app.listen(PORT, () => {
